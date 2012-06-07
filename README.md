@@ -4,7 +4,7 @@ Simple, animated, and imageless flash cards using HTML/CSS/jQuery.
 ## Features
  
 * Easily tweaked appearance <small>(requires [SASS](http://sass-lang.com)/[Compass](http://compass-style.org) or old-fashioned overrides)</small>  
-<small>Simply edit variables in [_flash_cards.scss](css/_flash_cards.scss) to update dimensions and colors.</small>
+<small>Simply edit variables in [_flash_cards.scss](/flash_cards/blob/master/css/_flash_cards.scss) to update dimensions and colors.</small>
 * Simple markup  
 <small>The deck is a list and the cards are list items with a div for each side.</small>
 * No images  
