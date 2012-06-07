@@ -1,0 +1,210 @@
+@import "fonts",
+        "compass/css3/background-clip",
+        "compass/css3/border-radius",
+        "compass/css3/box-shadow",
+        "compass/css3/images",
+        "compass/css3/transform",
+        "compass/css3/transition";
+
+// Card
+$card_color:    #fff;    // Color of the "paper."
+$text_color:    #222;    // Color of the "writing."
+$lines_writing: #0080ff; // Color of the lines on which text is "written."
+$line_top:      #ff78b4; // Color of the top line.
+
+$card_font: SchoolBell;
+
+$drop_shadow:          true; // If you want NOT to have a drop-shadow, set this to anything but true (or null, it must have some value).
+$drop_shadow_offset_x: 0;    // Vertical offset
+$drop_shadow_offset_y: 3px;  // Horizontal offset
+$drop_shadow_blur:     5px;
+$drop_shadow_color:    #000;
+
+$card_width:         500px;
+$card_height:        300px;
+$card_font_size:     30px;  // This is also the rule size (space b/w lines).
+$neg_space_card_top: 20;    // A unitless value representing the negative space (in px) at the top of the card.
+$neg_space_default:  15px;  // I use this variable throughout my projects. Didn't think of a better way to handle it here.
+$transition_default: all .4s ease-in-out;
+
+// Buttons (Previous / Flip / Next)
+$button_text_color: #fff;
+
+$button_font_size: 30px;
+$button_padding:   10px; // For bigger targets!
+
+// Keyboard Shortcuts Icon
+$kbsi_bg_color:   #0080ff;
+$kbsi_text_color: #fff;
+$kbsi_border:     1px solid #fff;
+
+$kbsi_font_size: 25px;
+
+// ==========================================
+// You shouldn't need to edit anything below.
+// ==========================================
+$y_center:          $card_height / 2 - 1;                                            // The vertical center of the card.
+$rule_center_min:   ceil($y_center - $card_font_size / 2);                           // The first blue line above $y_center.
+$total_rules:       $card_height / $card_font_size;                                  // The total number of lines on which to write. One may be split b/w the top and bottom.
+$line_top_loc_temp: $rule_center_min - ceil($total_rules / 2 - 1) * $card_font_size; // The location of the top line. If it's too close to
+$line_top_loc:      $line_top_loc_temp; // Variable initiation.                      // the top, we may need to change it.
+
+@if $line_top_loc_temp < $neg_space_card_top {         // If the top line is too close to the top,...
+  $line_top_loc: $line_top_loc_temp + $card_font_size; // ...move it down one blue line.
+}
+
+/* CARDS */
+#deck {
+  height: $card_height;
+  list-style: none;
+  margin: $neg_space_default auto;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: $card_width;
+}
+
+.card {
+  @include perspective(1600);
+  color: $text_color;
+  display: none;
+  font-family: $card_font;
+  font-size: $card_font_size;
+  height: $card_height;
+  line-height: $card_font_size * 2;
+  position: relative;
+  width: $card_width;
+  &:first-child { display: block; }
+}
+
+.side_one, .side_two {
+  @include backface-visibility(hidden);
+  @include background-image(linear-gradient($card_color 0px, $card_color ($card_font_size - 1), $lines_writing ($card_font_size)));
+  @include transition($transition_default);
+  background-color: $card_color;
+  background-size: $card_width $card_font_size;
+  background-position: 50%;
+  height: inherit;
+  position: absolute;
+  width: inherit;
+}
+
+@if $drop_shadow == true {
+  .current .side_one, .current.flip .side_two { @include box-shadow($drop_shadow_offset_x $drop_shadow_offset_y $drop_shadow_blur $drop_shadow_color); }
+  .current.flip .side_one { @include box-shadow(none); }
+}
+
+.side_one {
+  @include rotateX(0deg);
+  @include transform-style(preserve-3d);
+  z-index: 900;
+}
+.flip .side_one {
+  @include rotateX(180deg);
+}
+
+.side_two {
+  @include rotateX(-180deg);
+  @include transform-style(preserve-3d);
+  z-index: 800;
+}
+.flip .side_two {
+  @include rotateX(0deg);
+  z-index: 1000;
+}
+
+.card p {
+  @include background-image(linear-gradient($card_color 0px, $card_color $line_top_loc - 1, $line_top $line_top_loc));
+  background-size: $card_width $line_top_loc + 1;
+  background-repeat: repeat-x;
+  display: table-cell;
+  height: $card_height;
+  vertical-align: middle;
+  width: $card_width;
+}
+
+/* NAV */
+#nav_deck {
+  color: $button_text_color;
+  font-size: 10px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  width: $card_width;
+}
+.icon {
+  cursor: pointer;
+  &:before {
+    content: attr(data-icon);
+    font-family: 'Flash Cards';
+    visibility: visible;
+  }
+}
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+#prev:before, #next:before, #flipper:before {
+  font-size: $button_font_size;
+  padding: $button_padding;
+  position: absolute;
+}
+#prev:before { left: 0; }
+#next:before { right: 0; }
+
+#keyboard_shortcuts {
+  background: #000;
+  display: none;
+  left: 0;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  z-index: 99999;
+}
+#keyboard_shortcuts h1 { text-align: center; }
+#keyboard_shortcuts td {
+  padding: 15px;
+  text-align: left;
+  width: 300px;
+  &:first-child { text-align: right; }
+}
+.or {
+  color: $text_color;
+  padding: 0 10px;
+}
+#keyboard_shortcuts_toggle {
+  cursor: pointer;
+  left: 25px;
+  position: absolute;
+  top: 25px;
+  &:before {
+    @include border-radius(20px);
+    @include background-clip(padding-box);
+    background: $kbsi_bg_color;
+    border: $kbsi_border;
+    color: $kbsi_text_color;
+    font-size: $kbsi_font_size;
+    height: 20px;
+    padding: 5px;
+    width: 20px;
+  }
+}
+
+// =========
+// Fallbacks
+// =========
+// If the browser can't animate the card flip, fade the text out/in.
+.no-csstransforms3d .flip .side_one, .no-csstransforms3d .side_two {
+  @include transition($transition_default);
+  opacity: 0;
+}
+.no-csstransforms3d .flip .side_two {
+  @include transition($transition_default);
+  opacity: 1;
+}
