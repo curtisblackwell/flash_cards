@@ -34,7 +34,7 @@ I plan to support all major browsers, but I haven't had the need yet.
            <b>If you're using <a href="http://sass-lang.com/">SASS</a>/<a href="http://compass-style.org/">Compass</a>:</b><br>
            <code>_flash_cards.scss</code> and <code>_fonts.scss</code><br>
            <b>If you're not using SASS/Compass:</b><br>
-           <code>flash_cards.css</code>
+           <code>style.css</code>
          </td>
          <td>
            <br>
@@ -55,7 +55,7 @@ I plan to support all major browsers, but I haven't had the need yet.
 
 2. ### Include necessary code.  
    #### .css
-   If you're SASSin' and Compassin' it up, `@import "flash_cards";` into your `.scss`. If not, use `flash_cards.css`.
+   If you're SASSin' and Compassin' it up, `@import "flash_cards";` into your `.scss`. If not, use `style.css`.
 
    #### .js (and font)
    Place the following in your `<head>`:
@@ -129,4 +129,4 @@ I plan to support all major browsers, but I haven't had the need yet.
         <div class="icon" id="keyboard_shortcuts_toggle" data-icon="k"><span class="visuallyhidden">Keyboard Shortcuts</span></div>
 
 ## Icons not displaying properly?
-Check the paths to the font files in `_fonts.scss` or `flash_cards.css`.
+Check the paths to the font files in `_fonts.scss` or `style.css`.

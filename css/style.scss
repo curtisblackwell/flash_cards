@@ -26,25 +26,3 @@ a {
 }
 
 .card:first-child .side_two { font-family: GungSeo, serif; }
-
-@font-face {
-    font-family: 'Octicons Regular';
-    src: url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.eot?639c50d4");
-    src: url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.eot?639c50d4#iefix") format("embedded-opentype"),
-         url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.woff?0605b255") format("woff"),
-         url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.ttf?f82fcba7") format("truetype"),
-         url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.svg?1f7afa21#newFontRegular") format("svg");
-    font-weight: normal;
-    font-style: normal;
-}
-.fork {
-  font-size: 30px ;
-  position: absolute;
-  text-decoration: none;
-  top: 15px;
-  right: 15px;
-}
-.fork:before {
-  content:"\f220";
-  font-family: "Octicons Regular";
-}
