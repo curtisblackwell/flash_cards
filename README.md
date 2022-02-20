@@ -130,3 +130,6 @@ I plan to support all major browsers, but I haven't had the need yet.
 
 ## Icons not displaying properly?
 Check the paths to the font files in `_fonts.scss` or `style.css`.
+
+## License
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Flash Cards</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://curtisblackwell.github.io/flash_cards/" property="cc:attributionName" rel="cc:attributionURL">Curtis Blackwell</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
